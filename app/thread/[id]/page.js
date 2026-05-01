@@ -2,7 +2,7 @@ import { supabase } from '@/lib/supabaseClient'
 import NewPostForm from '@/components/NewPostForm'
 
 export const metadata = {
-  title: thread.title
+  title: 'Thread'
 }
 
 export default async function ThreadPage({ params }) {
