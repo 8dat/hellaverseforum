@@ -8,11 +8,15 @@ export const metadata = {
 export default async function ThreadPage({ params }) {
   const { id } = params
 
-  const { data: thread } = await supabase
+  const { data: thread, error: threadError } = await supabase
     .from('threads')
     .select('*')
     .eq('id', id)
-    .single()
+    .maybeSingle()
+
+  if (threadError || !thread) {
+    return <div>Thread not found</div>
+  }
 
   const { data: posts } = await supabase
     .from('posts')
