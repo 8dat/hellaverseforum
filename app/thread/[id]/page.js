@@ -18,6 +18,8 @@ export default async function ThreadPage({ params }) {
     return <div>Thread not found</div>
   }
 
+  console.log("param id:", id)
+
   const { data: posts } = await supabase
     .from('posts')
     .select('*')
