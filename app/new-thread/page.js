@@ -11,7 +11,12 @@ export default function NewThread() {
   async function createThread() {
     const { data: { user } } = await supabase.auth.getUser()
 
-    const { data: thread } = await supabase
+    if (!user) {
+      alert("You're not logged in")
+      return
+    }
+
+    const { data, error } = await supabase
       .from('threads')
       .insert({
         title,
@@ -20,8 +25,13 @@ export default function NewThread() {
       .select()
       .single()
 
-    router.push(`/thread/${thread.id}`)
-    redirectTo: process.env.NEXT_PUBLIC_SITE_URL
+    if (error) {
+      console.error(error)
+      alert("Failed to create thread")
+      return
+    }
+
+    router.push(`/thread/${data.id}`)
   }
 
   return (
