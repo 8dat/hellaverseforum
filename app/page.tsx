@@ -1,9 +1,9 @@
 import { supabase } from '@/lib/supabaseClient'
 import GoogleLoginButton from '@/components/GoogleLoginButton'
 import Link from 'next/link'
+import AuthStatus from '@/components/AuthStatus'
 
 export default async function Home() {
-	const { data: { user } } = await supabase.auth.getUser()
 	const { data: threads } = await supabase
 		.from('threads')
 		.select('*')
@@ -13,11 +13,7 @@ export default async function Home() {
 		<div>
 			<h1>RP Forum</h1>
 
-			{user ? (
-				<p>Logged in as: {user.email}</p>
-			) : (
-				<p>Not logged in</p>
-			)}
+			<AuthStatus />
 
 			<Link href="/new-thread">Create Thread</Link>
 
@@ -30,6 +26,7 @@ export default async function Home() {
 					</li>
 				))}
 			</ul>
+
 			<GoogleLoginButton />
 		</div>
 	)
