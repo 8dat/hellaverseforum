@@ -14,11 +14,10 @@ export default async function ThreadPage({ params }) {
     .eq('id', id)
     .maybeSingle()
 
-  const { data, error } = await supabase
+  const { error } = await supabase
     .from('threads')
     .select('*')
 
-  console.log("ALL THREADS:", data)
   console.log("ERROR:", error)
   console.log("URL param id:", id)
 
