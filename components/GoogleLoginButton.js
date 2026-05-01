@@ -7,7 +7,7 @@ export default function GoogleLoginButton() {
     await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: window.location.origin
+        redirectTo: process.env.NEXT_PUBLIC_SITE_URL
       }
     })
   }
