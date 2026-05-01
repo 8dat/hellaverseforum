@@ -14,16 +14,17 @@ export default async function ThreadPage({ params }) {
     .eq('id', id)
     .maybeSingle()
 
-  if (threadError || !thread) {
-    return <div>Thread not found</div>
-  }
-
   const { data, error } = await supabase
     .from('threads')
     .select('*')
 
   console.log("ALL THREADS:", data)
   console.log("ERROR:", error)
+  console.log("URL param id:", id)
+
+  if (threadError || !thread) {
+    return <div>Thread not found</div>
+  }
 
   const { data: posts } = await supabase
     .from('posts')
