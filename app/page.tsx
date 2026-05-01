@@ -1,7 +1,7 @@
 import { supabase } from '@/lib/supabaseClient'
 import GoogleLoginButton from '@/components/GoogleLoginButton'
-import Link from 'next/link'
 import AuthStatus from '@/components/AuthStatus'
+import Link from 'next/link'
 
 export default async function Home() {
 	const { data: threads } = await supabase

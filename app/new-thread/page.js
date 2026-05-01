@@ -21,6 +21,7 @@ export default function NewThread() {
       .single()
 
     router.push(`/thread/${thread.id}`)
+    redirectTo: process.env.NEXT_PUBLIC_SITE_URL
   }
 
   return (
