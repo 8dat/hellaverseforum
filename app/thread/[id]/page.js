@@ -1,6 +1,10 @@
 import { supabase } from '@/lib/supabaseClient'
 import NewPostForm from '@/components/NewPostForm'
 
+export const metadata = {
+  title: thread.title
+}
+
 export default async function ThreadPage({ params }) {
   const { id } = params
 
